@@ -9,4 +9,17 @@ data class FilmItem(
     val image_url: String? = null,
     val description: String? = null,
     val genres: List<String>? = null
-)
+){
+
+    fun getAllFilmsString() : String {
+        var str = ""
+        genres?.let {
+            for (i in it) {
+                str += i
+                str +=", "
+            }
+        }
+
+        return str
+    }
+}

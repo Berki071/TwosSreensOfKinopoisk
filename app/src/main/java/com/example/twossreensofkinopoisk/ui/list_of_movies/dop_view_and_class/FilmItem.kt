@@ -34,9 +34,9 @@ fun FilmListItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-
+                onClick(item)
             }
-        ) {
+    ){
         AsyncImage(
             model = item.image_url,
             contentDescription = "",
