@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -98,13 +99,35 @@ fun DetailedInformationScreen(
                 }
 
 
-                Text(filmItem.localized_name ?: "" , fontSize = 14.sp, modifier = Modifier)
+                Text(
+                    text = filmItem.localized_name ?: "" ,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    modifier = Modifier
+                )
 
-                Text( "${filmItem.getAllFilmsString()}${filmItem.year} год", fontSize = 14.sp, modifier = Modifier)
+                Text(
+                    text = "${filmItem.getAllFilmsString()}${filmItem.year} год",
+                    fontSize = 14.sp,
+                    color = Color.Gray,
+                    modifier = Modifier
+                )
 
-                Text("${filmItem.rating} КиноПоиск", fontSize = 14.sp, modifier = Modifier)
+                Text(
+                    text = "${filmItem.rating} КиноПоиск",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(R.color.primaryColor),
+                    modifier = Modifier
+                )
 
-                Text("${filmItem.description}", fontSize = 14.sp, modifier = Modifier)
+                Text(
+                    text = "${filmItem.description}",
+                    fontSize = 14.sp,
+                    color = Color.Black,
+                    modifier = Modifier
+                )
             }
         }
     }

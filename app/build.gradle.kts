@@ -77,4 +77,13 @@ dependencies {
     implementation (libs.converter.gson)
 
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    val koin_version = "4.0.0"
+    implementation("io.insert-koin:koin-android:$koin_version")
+    implementation("io.insert-koin:koin-compose:$koin_version")
+    implementation("io.insert-koin:koin-compose-viewmodel:$koin_version")
+    implementation("io.insert-koin:koin-compose-viewmodel-navigation:$koin_version")
+    implementation("io.insert-koin:koin-androidx-compose:$koin_version")
+    implementation("io.insert-koin:koin-androidx-compose-navigation:$koin_version")
+
 }
