@@ -20,9 +20,11 @@ class ListOfMoviesFragment: Fragment() {
         composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                //MaterialTheme {
-                    ListOfMoviesScreen()
-               // }
+                ListOfMoviesScreen(
+                    selectFilm = { itemFilm ->
+
+                    }
+                )
             }
         }
         return view

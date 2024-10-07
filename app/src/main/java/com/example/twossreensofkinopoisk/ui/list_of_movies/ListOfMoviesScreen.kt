@@ -32,6 +32,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.twossreensofkinopoisk.R
+import com.example.twossreensofkinopoisk.data.Network.model.FilmItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.FilmBoxListItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.GenreItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.Title
@@ -40,6 +41,7 @@ import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.Ti
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListOfMoviesScreen(
+    selectFilm: (FilmItem)->Unit,
     modifier: Modifier = Modifier,
     mainVM: ListOfMoviesVM = viewModel()
 ) {
@@ -117,7 +119,12 @@ fun ListOfMoviesScreen(
                     }
 
                     items(listFilms) { gen ->
-                        FilmBoxListItem(data = gen)
+                        FilmBoxListItem(
+                            data = gen,
+                            onClick = {itemFilm ->
+                                selectFilm(itemFilm)
+                            }
+                        )
                     }
                 }
             }
@@ -141,5 +148,5 @@ fun ListOfMoviesScreen(
 @Preview
 @Composable
 private fun ListOfMoviesScreenPreview() {
-    ListOfMoviesScreen()
+    ListOfMoviesScreen(selectFilm= {})
 }

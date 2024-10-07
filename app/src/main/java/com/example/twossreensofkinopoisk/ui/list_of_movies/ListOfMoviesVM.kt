@@ -51,23 +51,54 @@ class ListOfMoviesVM: ViewModel() {
                     }
 
                     val newListMain = it.sortedBy { it.localized_name }
-                    val newList: MutableList<Pair<FilmItem, FilmItem?>> = mutableListOf()
-                    for(i in 0 until newListMain.size step 2){
-                        newList.add(Pair(newListMain[i], if((i+1)<newListMain.size) newListMain[i+1] else null))
-                    }
-
                     _uiState.update { currentState ->
                         currentState.copy(
                             listOfGenres=  setGenres.toList().sorted().map{ title -> GenreForList(title.substring(0, 1).uppercase() + title.substring(1),false)},
                             listOfFilmsAll= newListMain,
-                            listOfFilmsShow = newList,
                             isError = false
                         )
                     }
+
+                    chooseFilmsByGenre()
+
                     isShowLoading(false)
                 }
             }
         })
+    }
+
+    fun chooseFilmsByGenre(){
+        if(_uiState.value.listOfFilmsAll != null) {
+            val newList: MutableList<Pair<FilmItem, FilmItem?>> = mutableListOf()
+
+            val listFilms: List<FilmItem>
+
+            if(_uiState.value.selectedGenre == null){
+                listFilms = _uiState.value.listOfFilmsAll!!
+            }else{
+                listFilms= _uiState.value.listOfFilmsAll!!.filter { it.genres?.contains(_uiState.value.selectedGenre!!.title, ignoreCase = true) ?: false}
+            }
+
+            for (i in 0 until listFilms.size step 2) {
+                newList.add(Pair(listFilms[i], if ((i + 1) < listFilms.size) listFilms[i + 1] else null))
+            }
+
+            _uiState.update { currentState ->
+                currentState.copy(
+                    listOfFilmsShow = newList,
+                )
+            }
+
+        }else{
+
+            _uiState.update { currentState ->
+                currentState.copy(
+                    listOfFilmsShow = null,
+                    isError = false
+                )
+            }
+
+        }
     }
 
     fun isShowErrorMsg(boo:Boolean){
@@ -100,6 +131,13 @@ class ListOfMoviesVM: ViewModel() {
                 )
             }
         }
+
+        chooseFilmsByGenre()
+    }
+
+    fun List<String>.contains(s: String, ignoreCase: Boolean = false): Boolean {
+
+        return any { it.equals(s, ignoreCase) }
     }
 
 }
