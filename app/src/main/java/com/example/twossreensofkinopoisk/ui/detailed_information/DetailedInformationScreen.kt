@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,6 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,16 +55,24 @@ fun DetailedInformationScreen(
 ) {
     val uiState = manVM.uiState.collectAsState()
 
+    val robotoFamily = FontFamily(
+        Font(R.font.roboto_regular400, FontWeight.Normal),
+        Font(R.font.roboto_medium500, FontWeight.Medium),
+        Font(R.font.roboto_bold700, FontWeight.Bold)
+    )
+
     Scaffold(
         modifier= modifier,
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 title = {
                     Text(
                         text = filmItem.name ?: "",
-                        fontSize = 22.sp,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
+                        fontSize = 18.sp,
+                        modifier = Modifier,
+                        textAlign = TextAlign.Center,
+                        fontFamily = robotoFamily,
+                        fontWeight = FontWeight.Medium
                     )
                 },
                 navigationIcon={ IconButton({ clickBack()}) { Icon(Icons.Filled.ArrowBack, contentDescription = "Назад")}},
@@ -82,7 +93,7 @@ fun DetailedInformationScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top= 32.dp)
+                        .padding(top= 24.dp)
                     ,
                     horizontalArrangement = Arrangement.Center,
                 ) {
@@ -91,9 +102,9 @@ fun DetailedInformationScreen(
                         contentDescription = "",
                         error = painterResource(R.drawable.error_img),
                         modifier = Modifier
-                            .height(300.dp)
+                            .height(201.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .aspectRatio(2f / 3f),
+                        ,
                         contentScale = ContentScale.Fit,
                     )
                 }
@@ -101,32 +112,48 @@ fun DetailedInformationScreen(
 
                 Text(
                     text = filmItem.localized_name ?: "" ,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 26.sp,
                     color = Color.Black,
-                    modifier = Modifier
+                    modifier = Modifier.padding(top = 24.dp, start = 16.dp, end= 16.dp),
+                    fontFamily = robotoFamily,
+                    fontWeight = FontWeight.Bold
                 )
 
                 Text(
                     text = "${filmItem.getAllFilmsString()}${filmItem.year} год",
-                    fontSize = 14.sp,
-                    color = Color.Gray,
-                    modifier = Modifier
+                    fontSize = 16.sp,
+                    color = colorResource(R.color.grayText),
+                    modifier = Modifier.padding(top = 8.dp, start = 16.dp, end= 16.dp),
+                    fontFamily = robotoFamily,
+                    fontWeight = FontWeight.Normal
                 )
 
-                Text(
-                    text = "${filmItem.rating} КиноПоиск",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(R.color.primaryColor),
-                    modifier = Modifier
-                )
+                Row(modifier = Modifier.padding(top = 10.dp, start = 16.dp, end= 16.dp)){
+                    Text(
+                        text = "${filmItem.rating}",
+                        fontSize = 24.sp,
+                        color = colorResource(R.color.primaryColor),
+                        modifier = Modifier.alignByBaseline().padding(end= 8.dp),
+                        fontFamily = robotoFamily,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "КиноПоиск",
+                        fontSize = 16.sp,
+                        color = colorResource(R.color.primaryColor),
+                        modifier = Modifier.alignByBaseline(),
+                        fontFamily = robotoFamily,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
 
                 Text(
                     text = "${filmItem.description}",
                     fontSize = 14.sp,
                     color = Color.Black,
-                    modifier = Modifier
+                    modifier = Modifier.padding(top = 14.dp, start = 16.dp, end= 16.dp),
+                    fontFamily = robotoFamily,
+                    fontWeight = FontWeight.Normal
                 )
             }
         }
