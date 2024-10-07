@@ -25,8 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
@@ -51,6 +55,12 @@ fun ListOfMoviesScreen(
 
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
+
+    val robotoFamily = FontFamily(
+        Font(R.font.roboto_regular400, FontWeight.Normal),
+        Font(R.font.roboto_medium500, FontWeight.Medium),
+        Font(R.font.roboto_bold700, FontWeight.Bold)
+    )
 
 
     if (uiState.value.isError) {
@@ -82,9 +92,11 @@ fun ListOfMoviesScreen(
                 title = {
                     Text(
                         text = "Фильмы",
-                        fontSize = 22.sp,
+                        fontSize = 18.sp,
                         modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        fontFamily = robotoFamily,
+                        fontWeight = FontWeight.Medium
                     )
                 },
                 navigationIcon = {},
@@ -115,7 +127,7 @@ fun ListOfMoviesScreen(
 
                 uiState.value.listOfFilmsShow?.let{ listFilms ->
                     item  {
-                        Title(title= "Фильмы")
+                        Title(title= "Фильмы", modifier = Modifier.padding(top = 16.dp))
                     }
 
                     items(listFilms) { gen ->

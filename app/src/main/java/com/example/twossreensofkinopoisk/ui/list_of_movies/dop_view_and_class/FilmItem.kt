@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,10 +16,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.data.Network.model.FilmItem
@@ -29,6 +33,12 @@ fun FilmListItem(
     onClick: (FilmItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+    val robotoFamily = FontFamily(
+        Font(R.font.roboto_regular400, FontWeight.Normal),
+        Font(R.font.roboto_medium500, FontWeight.Medium),
+        Font(R.font.roboto_bold700, FontWeight.Bold)
+    )
 
     Column(
         modifier = modifier
@@ -42,17 +52,21 @@ fun FilmListItem(
             contentDescription = "",
             error = painterResource(R.drawable.error_img),
             modifier = Modifier
-                .clip(RoundedCornerShape(4.dp))
                 .fillMaxWidth()
-                .aspectRatio(2f/3f),
+                .aspectRatio(160f/222f)
+                .padding(bottom = 8.dp)
+                .clip(RoundedCornerShape(4.dp))
+            ,
             contentScale = ContentScale.Crop,
         )
         Text(
             text = item.localized_name ?: "",
-            fontWeight = FontWeight.Bold,
             maxLines = 2,
             minLines = 2,
-            overflow = TextOverflow.Ellipsis
+            fontSize = 16.sp,
+            overflow = TextOverflow.Ellipsis,
+            fontFamily = robotoFamily,
+            fontWeight = FontWeight.Bold
         )
     }
 

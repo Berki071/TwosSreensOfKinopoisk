@@ -16,7 +16,7 @@ fun FilmBoxListItem(
     onClick: (FilmItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Row(modifier = modifier.padding(8.dp)){
+    Row(modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)){
         Box(
             modifier= Modifier.weight(1f).padding(end = 4.dp),
             contentAlignment = Alignment.Center
