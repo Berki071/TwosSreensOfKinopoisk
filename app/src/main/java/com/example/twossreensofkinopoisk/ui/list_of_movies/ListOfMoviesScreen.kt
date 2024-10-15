@@ -78,7 +78,7 @@ fun ListOfMoviesScreen(
                     }
                 }
             } finally {
-                //mainVM.isShowErrorMsg(false)
+                mainVM.isShowErrorMsg(false)
             }
         }
     }
@@ -142,7 +142,7 @@ fun ListOfMoviesScreen(
             }
         }
 
-        if (uiState.value.listOfFilmsAll == null) {
+        if (uiState.value.isShowLoading) {
             Box(
                 modifier = Modifier
                     .background(Color.White)

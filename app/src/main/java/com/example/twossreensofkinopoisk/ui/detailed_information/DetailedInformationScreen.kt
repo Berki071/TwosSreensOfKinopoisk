@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -72,7 +73,10 @@ fun DetailedInformationScreen(
                         modifier = Modifier,
                         textAlign = TextAlign.Center,
                         fontFamily = robotoFamily,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+
                     )
                 },
                 navigationIcon={ IconButton({ clickBack()}) { Icon(Icons.Filled.ArrowBack, contentDescription = "Назад")}},
