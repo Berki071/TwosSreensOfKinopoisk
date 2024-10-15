@@ -12,5 +12,4 @@ class MainVM: ViewModel() {
     fun selectItem(item: FilmItem?) {
         mutableSelectedFilm.value = item
     }
-
 }

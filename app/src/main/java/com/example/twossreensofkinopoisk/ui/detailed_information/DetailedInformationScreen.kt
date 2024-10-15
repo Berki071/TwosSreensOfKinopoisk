@@ -93,7 +93,7 @@ fun DetailedInformationScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top= 24.dp)
+                        .padding(top = 24.dp)
                     ,
                     horizontalArrangement = Arrangement.Center,
                 ) {
@@ -128,23 +128,28 @@ fun DetailedInformationScreen(
                     fontWeight = FontWeight.Normal
                 )
 
-                Row(modifier = Modifier.padding(top = 10.dp, start = 16.dp, end= 16.dp)){
-                    Text(
-                        text = "${filmItem.rating}",
-                        fontSize = 24.sp,
-                        color = colorResource(R.color.primaryColor),
-                        modifier = Modifier.alignByBaseline().padding(end= 8.dp),
-                        fontFamily = robotoFamily,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "КиноПоиск",
-                        fontSize = 16.sp,
-                        color = colorResource(R.color.primaryColor),
-                        modifier = Modifier.alignByBaseline(),
-                        fontFamily = robotoFamily,
-                        fontWeight = FontWeight.Medium
-                    )
+                if (filmItem.rating != null) {
+                    Row(modifier = Modifier.padding(top = 10.dp, start = 16.dp, end = 16.dp)) {
+                        Text(
+                            text = "${filmItem.rating}",
+                            fontSize = 24.sp,
+                            color = colorResource(R.color.primaryColor),
+                            modifier = Modifier
+                                .alignByBaseline()
+                                .padding(end = 8.dp),
+                            fontFamily = robotoFamily,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        Text(
+                            text = "КиноПоиск",
+                            fontSize = 16.sp,
+                            color = colorResource(R.color.primaryColor),
+                            modifier = Modifier.alignByBaseline(),
+                            fontFamily = robotoFamily,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
                 }
 
                 Text(
