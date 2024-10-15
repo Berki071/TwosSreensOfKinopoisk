@@ -7,9 +7,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -68,7 +70,7 @@ fun ListOfMoviesScreen(
             try {
                 val result = snackbarHostState.showSnackbar(
                     message = "Ошибка подключения сети",
-                    actionLabel = "Повторить".uppercase()
+                    actionLabel = "Повторить".uppercase(),
                 )
 
                 when (result) {
@@ -85,7 +87,15 @@ fun ListOfMoviesScreen(
 
     Scaffold(
         snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState)
+            SnackbarHost(hostState = snackbarHostState){data ->
+                Snackbar(
+                    //modifier = Modifier.padding(10.dp),
+                    actionColor = colorResource(R.color.selectedGenre),
+                    snackbarData = data,
+                    shape= RoundedCornerShape(2.dp),
+
+                    )
+            }
         },
         topBar = {
             TopAppBar(
@@ -149,9 +159,11 @@ fun ListOfMoviesScreen(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    color = colorResource(R.color.selectedGenre),
+                )
             }
-        }
+       }
 
     }
 
