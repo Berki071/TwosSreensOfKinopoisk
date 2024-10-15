@@ -1,10 +1,12 @@
 package com.example.twossreensofkinopoisk.ui.theme
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.lifecycle.Observer
 import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.ui.MainVM
@@ -35,10 +37,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     fun showFragmentDetailedInformation(){
+        val fragment = supportFragmentManager.findFragmentByTag(DetailedInformationFragment::class.java.canonicalName)
+
+        if(fragment == null){
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             add<DetailedInformationFragment>(R.id.fragmentContainerView, tag = DetailedInformationFragment::class.java.canonicalName)
         }
+            }
     }
     fun hideFragmentDetailedInformation(){
         val fragment = supportFragmentManager.findFragmentByTag(DetailedInformationFragment::class.java.canonicalName)
@@ -48,6 +54,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 setReorderingAllowed(true)
                 remove(it)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        val fragment = supportFragmentManager.findFragmentByTag(DetailedInformationFragment::class.java.canonicalName)
+
+        if(fragment != null){
+            hideFragmentDetailedInformation()
+        }else{
+            super.onBackPressed()
         }
     }
 }
