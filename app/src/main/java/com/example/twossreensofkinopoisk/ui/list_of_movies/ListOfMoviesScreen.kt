@@ -42,6 +42,9 @@ import com.example.twossreensofkinopoisk.data.Network.model.FilmItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.FilmBoxListItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.GenreItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.Title
+import org.koin.androidx.compose.koinViewModel
+
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 //@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +52,8 @@ import com.example.twossreensofkinopoisk.ui.list_of_movies.dop_view_and_class.Ti
 fun ListOfMoviesScreen(
     selectFilm: (FilmItem)->Unit,
     modifier: Modifier = Modifier,
-    mainVM: ListOfMoviesVM = viewModel()
+   // mainVM: ListOfMoviesVM = viewModel()
+    mainVM: ListOfMoviesVM  = koinViewModel()
 ) {
 
     val uiState = mainVM.uiState.collectAsState()

@@ -44,6 +44,7 @@ import coil.compose.AsyncImage
 import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.data.Network.model.FilmItem
 import com.example.twossreensofkinopoisk.ui.list_of_movies.ListOfMoviesVM
+import org.koin.androidx.compose.koinViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +53,7 @@ fun DetailedInformationScreen(
     filmItem: FilmItem,
     clickBack: ()->Unit,
     modifier: Modifier = Modifier,
-    manVM: DetailedInformationVM = viewModel()
+    manVM: DetailedInformationVM = koinViewModel()
 ) {
     val uiState = manVM.uiState.collectAsState()
 

@@ -12,10 +12,12 @@ import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.ui.MainVM
 import com.example.twossreensofkinopoisk.ui.detailed_information.DetailedInformationFragment
 import com.example.twossreensofkinopoisk.ui.list_of_movies.ListOfMoviesFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val viewModel: MainVM by viewModels()
+    private val viewModel by viewModel<MainVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

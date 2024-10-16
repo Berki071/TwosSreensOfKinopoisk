@@ -12,11 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.ui.MainVM
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class DetailedInformationFragment: Fragment() {
 
-    private val viewModel: MainVM by activityViewModels()
+    private val viewModel by activityViewModel<MainVM>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_detailed_information, container, false)
