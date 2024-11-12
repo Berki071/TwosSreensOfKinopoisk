@@ -79,10 +79,15 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.7.0")
 
     val koin_version = "4.0.0"
-    implementation("io.insert-koin:koin-androidx-compose:$koin_version")
-    implementation("io.insert-koin:koin-android:$koin_version")
-    implementation("io.insert-koin:koin-androidx-scope:$koin_version")
-    implementation("io.insert-koin:koin-androidx-viewmodel:$koin_version")
+    implementation(project.dependencies.platform("io.insert-koin:koin-bom:$koin_version"))
+    //implementation("io.insert-koin:koin-core")
+    implementation("io.insert-koin:koin-android")
+    implementation("io.insert-koin:koin-androidx-compose")
+    implementation("io.insert-koin:koin-core-coroutines")
+    implementation("io.insert-koin:koin-androidx-viewmodel")
+    //implementation("io.insert-koin:koin-compose-viewmodel")
+    //implementation("io.insert-koin:koin-androidx-scope")
+
 
 
 }
