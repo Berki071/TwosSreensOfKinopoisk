@@ -39,11 +39,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.twossreensofkinopoisk.R
 import com.example.twossreensofkinopoisk.data.Network.model.FilmItem
-import com.example.twossreensofkinopoisk.ui.list_of_movies.ListOfMoviesVM
 import org.koin.androidx.compose.koinViewModel
 
 

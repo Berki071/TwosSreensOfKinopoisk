@@ -5,12 +5,12 @@ import com.example.twossreensofkinopoisk.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 
-class MainApplication: Application() {
+class MainApp: Application() {
     override fun onCreate() {
         super.onCreate()
 
         startKoin {
-            androidContext(this@MainApplication)
+            androidContext(this@MainApp)
             modules(appModule)
         }
     }

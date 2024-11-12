@@ -80,6 +80,9 @@ dependencies {
 
     val koin_version = "4.0.0"
     implementation("io.insert-koin:koin-androidx-compose:$koin_version")
+    implementation("io.insert-koin:koin-android:$koin_version")
+    implementation("io.insert-koin:koin-androidx-scope:$koin_version")
+    implementation("io.insert-koin:koin-androidx-viewmodel:$koin_version")
 
 
 }
